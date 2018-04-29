@@ -1,22 +1,31 @@
-//require('jquery');
 require('touch-dnd/touch-dnd.js');
 
 var queryDict = {}
 location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
 
-
+$( document ).ready(function() {
+	console.log( "ready!" );
+	$.get("backend/data.php", { voter : queryDict['voter']}).done(function(data) {
+		var list = JSON.parse(data).list;
+		console.log(list);
+		$.each(list, function(i) {
+			$('#vote_list').append('<li id="' + this.id + '">' + this.name + '</li>' + "\n");
+		});
+	});
+});
 
 $(function() {
-$('#example1').sortable({}).on('sortable:update', function() {
-	var data = [];
-	$('#example1').children('li').each(function () {
+$('#vote_list').sortable({}).on('sortable:update', function() {
+	var votes = [];
+	$('#vote_list').children('li').each(function () {
 		var id = $(this).attr('id');
 		if ('__ph0' != id) {
-    		data.push(id);
+    		votes.push(id);
     	}
 	});
-	console.log({ voter : queryDict['voter'], data : data});
-	//$.post("voter/vote.php", data, null, 'json');
+	var data = { voter : queryDict['voter'], votes : votes};
+	console.log(data);
+	$.get("backend/vote.php", data, null, 'json');
 })
 });
  
