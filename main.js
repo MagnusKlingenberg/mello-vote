@@ -25,7 +25,7 @@ $('#vote_list').sortable({}).on('sortable:update', function() {
 	});
 	var data = { voter : queryDict['voter'], votes : votes};
 	console.log(data);
-	$.get("backend/vote.php", data, null, 'json');
+	$.post("backend/vote.php", JSON.stringify(data), null, 'json');
 })
 });
  
