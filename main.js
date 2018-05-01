@@ -6,8 +6,11 @@ location.search.substr(1).split("&").forEach(function(item) {queryDict[item.spli
 $( document ).ready(function() {
 	console.log( "ready!" );
 	$.get("backend/data.php", { voter : queryDict['voter']}).done(function(data) {
-		var list = JSON.parse(data).list;
+		var resp = JSON.parse(data);
+		var name = resp.name;
+		var list = resp.list;
 		console.log(list);
+		$('#name').prepend(name);
 		$.each(list, function(i) {
 			$('#vote_list').append('<li id="' + this.id + '">' + this.name + '</li>' + "\n");
 		});
