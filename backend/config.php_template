@@ -1,0 +1,9 @@
+<?php
+$config['db_host'] = "localhost";
+$config['db_name'] = "name";
+$config['db_user'] = "user";
+$config['db_pass'] = "pass";
+
+
+$template['ex1'] = ['id' => 'ex1', 'name' => 'Example 1', 'flag' => ''];
+$template['ex2'] = ['id' => 'ex2', 'name' => 'Example 2', 'flag' => ''];

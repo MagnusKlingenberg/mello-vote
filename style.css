@@ -185,6 +185,14 @@ hr {
   margin:0 0 20px;
 }
 
+.small {
+  width:30px;
+}
+
+.rest {
+  width: 100%;
+}
+
 footer {
   width:270px;
   float:left;
