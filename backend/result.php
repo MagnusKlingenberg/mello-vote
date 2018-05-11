@@ -25,7 +25,7 @@ $result->close();
 foreach ( $rows as $row ) {
 	$votes = json_decode($row['votes']);
 	$pos = 0;
-	if (empty($votes)) break;
+	if (empty($votes)) continue;
 	foreach ($votes as $vote) {
 		if (isset($points[$pos])) {
 			$results[$vote] += $points[$pos];
@@ -39,13 +39,14 @@ arsort($results);
 ?>
 <html>
 <head>
-</head>
+<meta charset="UTF-8">
 <title>Resultat Mello 2018</title>
 <link rel="stylesheet" href="../style.css">
 <?php
 if (isset($_GET['refresh'])) {
 	printf("<meta http-equiv=\"refresh\" content=\"%d\">\n", $_GET['refresh']);
 } ?>
+</head>
 <body>
 <h1>Resultat Mello 2018</h1>
 <table>
